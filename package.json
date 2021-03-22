@@ -1,0 +1,17 @@
+{
+  "name": "sequelize-crud",
+  "version": "1.0.0",
+  "description": "fastcampus excercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon -e js,html server.js"
+  },
+  "keywords": [],
+  "author": "toriz7",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "nunjucks": "^3.2.0"
+  }
+}

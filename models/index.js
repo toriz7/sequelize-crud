@@ -5,18 +5,18 @@ var dotenv=require('dotenv');
 
 dotenv.config(); //LOAD CONFIG. prcoess.env 사용위함
 
-const sequelize=new Sequelize(process.env.DATABSE,
-    process.env.DB_USER,process.env.DB_PASSWORD,{
-        host:process.env.DB_HOST,
-        dialect:'mysql',
-        timezone:'+09:00', //한국시간 세팅
-        operatorAliases:Sequelize.Op,
-        pool:{
-            max:5,
-            min:0,
-            idle:10000
-        }
-    });
+const sequelize = new Sequelize( process.env.DATABASE,
+ process.env.DB_USER, process.env.DB_PASSWORD,{
+     host: process.env.DB_HOST,
+     dialect: 'mysql',
+     timezone: '+09:00', //한국 시간 셋팅
+     operatorsAliases: Sequelize.Op,
+     pool: {
+         max: 5,
+         min: 0,
+         idle: 10000
+     }
+ });
     
     /*
     디렉토리 내 파일을 읽어서, index.js 제외한 나머지 파일을 참조해서 테이블을 만든다

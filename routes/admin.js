@@ -1,3 +1,5 @@
+/*
+ 사용안함
 const express = require('express');
 const router = express.Router();
 
@@ -30,3 +32,5 @@ router.post('/products/write', ( req , res ) => {
 });
 
 module.exports = router;
+
+*/

@@ -2,13 +2,14 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const db = require('./models');
+const db = require('./models'); //이렇게 models 후에 생략하면 자동적으로 indes.js 를 가져온다. 
 
 class App {
 
     constructor () {
         this.app = express();
         
+        //db 연결
         this.dbConnection();
 
         // 뷰엔진 셋팅
@@ -16,7 +17,7 @@ class App {
 
         // 미들웨어 셋팅
         this.setMiddleWare();
-
+ 
         // 정적 디렉토리 추가
         this.setStatic();
 
@@ -38,7 +39,7 @@ class App {
         db.sequelize.authenticate()
         .then(() =>{
             console.log('Connection has been eastablished success');
-            return db.sequelize.sync();
+            //return db.sequelize.sync();
         })
         .then( ()=>{
             console.log('DB Sync complete');

@@ -27,10 +27,16 @@ const sequelize = new Sequelize( process.env.DATABASE,
         return file.indexOf('.js')&& file !=='index.js'
     
     })
-    .forEach(file=>{
+    .forEach(file =>{
+        var model = require(path.join(__dirname,
+            file))(sequelize, Sequelize.DataTypes);
+
+            db[model.name]=model;
+        /* ES6 에서는 에러 발생
         var model = sequelize.import(path.join(__dirname,
             file));
             db[model.name]=model;
+        */
 
     });
     /*

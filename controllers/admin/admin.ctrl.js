@@ -9,5 +9,12 @@ exports.get_products_write = ( _ , res) => {
 }
 
 exports.post_products_write = ( req , res ) => {
-    res.send(req.body);
+    //res.send(req.body);
+    models.Products.create({
+        name:req.body.name,
+        prcie:req.body.price,
+        description:req.body.description
+    }).then( ()=>{
+        res.redirect('admin/products');
+    });
 }

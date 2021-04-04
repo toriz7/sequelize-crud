@@ -9,7 +9,7 @@ class App {
     constructor () {
         this.app = express();
         
-        //db 연결
+        //db 연결 20200404
         this.dbConnection();
 
         // 뷰엔진 셋팅

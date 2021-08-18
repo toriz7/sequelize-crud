@@ -1,7 +1,7 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
+
 const db = require('./models'); //이렇게 models 후에 생략하면 자동적으로 indes.js 를 가져온다. 
 
 class App {
@@ -52,9 +52,10 @@ class App {
     setMiddleWare (){
         
         // 미들웨어 셋팅
+        //bod-parser 미지원에 유의.
         this.app.use(logger('dev'));
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: false }));
 
     }
 

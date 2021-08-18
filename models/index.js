@@ -18,13 +18,13 @@ const sequelize = new Sequelize( process.env.DATABASE,
      }
  });
     
-    /*
-    디렉토리 내 파일을 읽어서, index.js 제외한 나머지 파일을 참조해서 테이블을 만든다
-    */
-    let db=[];
-    fs.readdirSync(__dirname)
+/*
+디렉토리 내 파일을 읽어서, index.js 제외한 나머지 파일을 참조해서 테이블을 만든다
+*/
+let db=[];
+fs.readdirSync(__dirname)
     .filter(file =>{
-        return file.indexOf('.js')&& file !=='index.js'
+        return file.indexOf('.js')&& file !=='index.js' // index.js 를 제외한 js 파일 중
     
     })
     .forEach(file =>{
@@ -39,15 +39,15 @@ const sequelize = new Sequelize( process.env.DATABASE,
         */
 
     });
-    /*
-    속성들
-    */
-    Object.keys(db).forEach(modelName=>{
-        if("associate" in db[modelName]){
-            db[modelName].associate(db);
+/*
+foreign key 관련 속성들 처리 위한 부분
+*/
+Object.keys(db).forEach(modelName=>{
+    if("associate" in db[modelName]){
+        db[modelName].associate(db);
         }
     });
 
-    db.sequelize = sequelize;
-    db.Sequelize=Sequelize;
-    module.exports = db;
+db.sequelize = sequelize;
+db.Sequelize=Sequelize;
+module.exports = db;

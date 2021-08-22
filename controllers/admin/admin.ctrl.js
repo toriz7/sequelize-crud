@@ -4,7 +4,6 @@ exports.get_products = ( _ , res) => {
     //     { message : "hello" } // message 란 변수를 템플릿으로 내보낸다.
     // );
     models.Products.findAll({
-
     }).then((products)=>{
         res.render('admin/products.html',{products : products})
     });
@@ -26,6 +25,14 @@ exports.post_products_write = ( req , res ) => {
     // });
     
     models.Products.create(req.body).then( ()=>{
-        res.redirect('admin/products');
+        res.redirect('/admin/products/');  //html 이 아니라 디렉토리임에 주의
     });
 }
+
+exports.get_products_detail = (req,res) =>{
+    //req.pameter.id
+    models.Products.findByPk((req.params.id)).then( (product) => {
+        //console.log(product);
+        res.render('admin/detail.html', {product}); //key value 가 같으므로 하나로 생략 ㅎㅎ
+    });
+};

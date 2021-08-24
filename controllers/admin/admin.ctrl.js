@@ -29,10 +29,40 @@ exports.post_products_write = ( req , res ) => {
     });
 }
 
-exports.get_products_detail = (req,res) =>{
+exports.get_products_detail = ( req , res) =>{
     //req.pameter.id
     models.Products.findByPk((req.params.id)).then( (product) => {
         //console.log(product);
         res.render('admin/detail.html', {product}); //key value 가 같으므로 하나로 생략 ㅎㅎ
-    });
+    })
 };
+
+exports.get_products_edit = ( req, res ) =>{
+    models.Products.findByPk((req.params.id)).then( (product) => {
+        //console.log(product);
+        res.render('admin/write.html', {product});//write.html 재활용
+    })
+}
+
+exports.post_products_edit = ( req, res ) =>{  //write.html 에서 post 로  받은 처리
+    models.Products.update({ 
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description
+    },{
+        where: { id : req.params.id} 
+    }
+    ).then( ()=> {
+        res.redirect('/admin/products/detail/' + req.params.id);
+    }).catch( (err) => {
+        console.log(err);
+    })
+}
+
+exports.get_products_delete = (req,res) => {
+    models.Products.destroy({
+        where : { id : req.params.id } 
+    }).then( (err) => {
+        res.redirect('/admin/products/');
+    })
+}

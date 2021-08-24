@@ -9,6 +9,7 @@
             <th>삭제</th>
         </tr>
         {% for product in products %}
+        
         <tr>
             <td> 
                 <a href= "/admin/products/detail/{{product.id}} ">
@@ -19,7 +20,7 @@
                 {{product.createdAt}}
             </td>
             <td>
-                <a href="#" class="btn btn-danger">삭제</a>
+                <a href="/admin/products/delete/{{product.id}}" class="btn btn-danger" onclick ="return confirm('삭제하시겠습니까?')">삭제</a>
             </td>
         </tr>
         {% endfor %}
